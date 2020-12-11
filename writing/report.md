@@ -1,12 +1,26 @@
 ***Nathan Loria - CS 312 Final Project***
 ---
-
 **Data**:
 ---
 Source:
 `https://perso.telecom-paristech.fr/eagan/class/igr204/datasets`
 
 This data set is a collection of 44 health and economic indicators for 266 countries around the world. The data is sourced from the website of a professor in France and has been collected based on real world events and indicators.
+
+**Motivation**:
+---
+All around the world, there are countries that are at extremely different developmental levels. Some are just now undergoing their technological revolution, some do not have enough money to ensure securities for their citizens, and some are developing high speed rail systems and rockets to send into space. The reason that this fact is important to me and relevant to the project is that when observing economic and public health data for different countries, certain trends become clear. When the right trends are discovered and a correlation can be observed between two different factors, and you can observe how these factors change from country to country, the ability to predict what may happen to a country in the future of it's development, and possibly help it's citizens, is a very powerful one. This project dives into different factors of a countries economy and public health in order to point out trends that would give somebody the knowledge to make a difference.
+
+**Project Overview**:
+---
+The research questions that I used to guide my analysis of the data and test my hypotheses are as follows:
+```
+  1. Is there a correlation between GDP per capita and infant mortality rate?
+  2. Is there a correlation between energy consumption and natural gas production in this data set?
+  3. Do countries with more railways have less highways?
+  4. Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?
+  5. Do the countries with the highest GDP have less debt (proportionally) than those with the lowest?
+```
 
 **Database System**:
 ---
@@ -93,7 +107,7 @@ The code block below shows an example (Bahrain) of what the structure of each do
 
 **Research Questions**:
 ---
-Is there a correlation between GDP per capita and infant mortality rate in this data set?
+Is there a correlation between GDP per capita and infant mortality rate?
 ---
 Query 1:
 ```
@@ -135,7 +149,7 @@ Results:
 ```
 
 ***Conclusion***:
-To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact. 
+To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact.
 
 Is there a correlation between energy consumption and natural gas production in this data set?
 ---
