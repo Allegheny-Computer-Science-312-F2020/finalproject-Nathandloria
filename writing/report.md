@@ -25,16 +25,16 @@ The research questions that I used to guide my analysis of the data and test my 
 **Database System**:
 ---
 
-Justification:
----
+**Justification**:
+
 I chose MongoDB as the software for my project because the data set that I wanted to use was very large, hard to understand and develop schema for, and also contained some blank attributes which I feel Mongo handles better than SQL.
 
-Introduction:
----
+**Introduction**:
+
 As previously stated, the database system that I chose to implement my final project is MongoDB. MongoDB is a free, open source NoSQL software that allows for the quick and easy retrieval of data. The reason that MongoDB is as efficient as it is, and is called a NoSQL (not only SQL) database is because it stores data in JSON format within objects called documents. A document in a Mongo database is similar to a row in an SQL table. These documents can then be queried using MongoDB's own query language, which has some similarities to typical SQL queries, in order to retrieve the desired data.
 
-Configuration:
----
+**Configuration**:
+
 In order to set up the database for testing and querying, a MongoDB server had to be initialized on my machine. The following steps listed below were used to configure the MongoDB server and carry out this initialization.
 ```
   - mkdir -p ~/mongodata
@@ -45,14 +45,14 @@ In order to set up the database for testing and querying, a MongoDB server had t
 ```
 Once these steps were completed, I was able to type `mongo` into the bash terminal and was ready to begin operations on the server.
 
-Data Insertion:
----
+**Data Insertion**:
+
 Since the data that I downloaded was in CSV format, I decided that utilizing PyMongo to insert the data into the database would be the most efficient method. In order to do this, I created a file called `build.py`, located in the src directory. This file reads in the CSV data, and inserts each line as a document with it's respective fields and field names. Since the script requires a connection to the Mongo database located within the previously configured Docker container, it must be run from within the container. In order to test and execute the code, the file and the data must be transferred to the `~/mongodata/src/` directory using the `cp` command. Once the files are there, all that must be done is to install python3-pip, pymongo, matplotlib, and numpy. Now that all of the steps are in place, `build.py` can be executed using Python and insert the data into the `countries_db` database with a collection name of `country`. The figure listed below is a snippet of the code located in build.py:
 
 ![image](img/build.png)
 
-Database Structure:
----
+**Database Structure**:
+
 The code block below shows an example (Bahrain) of what the structure of each document looks like:
 ```
 {
@@ -107,8 +107,8 @@ The code block below shows an example (Bahrain) of what the structure of each do
 
 **Research Questions**:
 ---
-Is there a correlation between GDP per capita and infant mortality rate?
----
+**Is there a correlation between GDP per capita and infant mortality rate?**
+
 Query 1:
 ```
 db.Country.aggregate([{ $group: { _id:null, avg_gdp_per_capita: {$avg:"$GDP_per_capita"} } }])
@@ -151,8 +151,9 @@ Results:
 ***Conclusion***:
 To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact.
 
-Is there a correlation between energy consumption and natural gas production in this data set?
 ---
+**Is there a correlation between energy consumption and natural gas production in this data set?**
+
 Query:
 ```
 db.Country.find({ "Electricity_consumption" : { $ne : "" }, "Natural_gas_production" : { $ne : "" }},{ "Electricity_consumption":1, "Natural_gas_production":1 })
@@ -281,8 +282,9 @@ Plot:
 
 ![image](img/q_2.png)
 
-Do countries with more railways have less highways?
 ---
+**Do countries with more railways have less highways?**
+
 Query:
 ```
 { "Railways" : { $ne : "" }, "Highways" : { $ne : "" } },{ "_id" : 0, "Railways" : 1, "Highways" : 1 }
@@ -438,8 +440,8 @@ Plot:
 
 ![image](img/q_3.png)
 
-Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?
----
+**Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?**
+
 Query 1:
 ```
 db.Country.aggregate([{ $group: { _id:null, avg_fertility_rate: {$avg:"$Total_fertility_rate"} } }])
@@ -479,8 +481,8 @@ Results:
 { "_id" : null, "avg_aids_prev_rate" : 1.0409473684210526 }
 ```
 
-Do the countries with the highest GDP have less debt (proportionally) than those with the lowest?
----
+**Do the countries with the highest GDP have less debt (proportionally) than those with the lowest?**
+
 Query 1:
 ```
 db.Country.find({ "GDP" : { $ne : "" }, "Debt_external" : { $ne : "" } },{ "_id" : 0, "Country" : 1, "GDP" : 1, "Debt_external" : 1 }).sort({ "GDP" : -1 }).limit(10)
