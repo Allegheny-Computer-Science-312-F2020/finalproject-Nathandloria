@@ -473,6 +473,10 @@ Upon reviewing the results of the query, there does not seem to be any correlati
 
 **Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?**
 
+***Background***:
+
+When I came across these two fields in the projects data file, I was immediately intrigued to investigate to see if there could possibly be a correlation between these two items. The public health ramifications if there is a positive correlation are immense and it could lead officials in the right direction when attempting to stop the spread of such a disease as HIV. The statistics compared; HIV/AIDS prevalence rate among adults (% of adults living with HIV/AIDS) and fertility rate (babies / woman) are two very important fields in this data set and the results of the comparison yield some very alarming results.
+
 Query 1:
 ```
 db.Country.aggregate([{ $group: { _id:null, avg_fertility_rate: {$avg:"$Total_fertility_rate"} } }])
@@ -512,7 +516,15 @@ Results:
 { "_id" : null, "avg_aids_prev_rate" : 1.0409473684210526 }
 ```
 
+***Conclusion***:
+
+According to the average values that were accumulated from the aggregate functions in MongoDB, there is a clear positive correlation in the AIDS prevalence rate among adults and the fertility rate in the countries within the data set. Of all of the countries in the database, the average fertility rate is 2.94 (babies / woman). In countries that have a fertility rate that is lower than the average, the AIDS prevalence rate is 1.04%. In the countries that have a higher fertility rate than the average, the average AIDS prevalence rate is 4.55%. This staggering increase is very concerning, and it leads to many questions about a country, it's ability to provide birth control and contraception, and how this affects it's population. According the the query results, 88 countries fell under this category. Although scary, this information can be massively helpful in explaining, predicting, and modeling trends in public health, specifically the spred of HIV within communities.
+
 **Do the countries with the highest GDP have less debt (proportionally) than those with the lowest?**
+
+***Background***:
+
+The purpose of this question is to explore trends between the GDP of a country, and the eternal debt that that country has. The hypothesis that I was attempting to test was that countries with a higher outstanding debt have lower lower total GDP than their counterparts. Asking this question is important because it can provide best practices for growing an economy, and maintaining a healthy economic state within a country.
 
 Query 1:
 ```
@@ -557,3 +569,17 @@ Results:
 { "Country" : "Palau", "Debt_external" : 0, "GDP" : 174000000 }
 { "Country" : "Sao Tome and Principe", "Debt_external" : 318000000, "GDP" : 214000000 }
 ```
+---
+***Listed below***: the average GDP to external debt ratio as calculated by `question_5.py`
+```
+Ratio of GDP to external debt (top 10): 0.5194060335420455
+Ratio of GDP to external debt (bottom 10): 0.47030626230884154
+```
+
+***Conclusion***:
+
+Upon review of the results from these queries, it can be seen that in the bottom 10 countries (in terms of GDP) there is a smaller ratio of GDP to external debt than in the top 10 countries that were also evaluated from this query. The average GDP to external debt ratio of the top ten countries was `.519`. In the bottom ten countries, this ratio is only `.470`. Based on these results, it can be concluded that the countries with the largest GDP values seem to have more external debt (owe more money) than the countries with the smallest GDP values. The results of this experiment, although a lot closer than I would imagine, turned out to prove my hypothesis wrong. I originally guessed that the countries with the smallest GDP would need more resources, and thus owe more money to other countries. This turned out to not be true, and it leads me to believe that in order to acquire such a large GDP, then a lot of resources and money must be borrowed in order to start an extremely successful economy. This could provide some insight to smaller countries, and possibly affect their decision making when making important decisions about their economy.
+
+**Conclusion**:
+---
+In the end, this project really allowed me to expand my knowledge of database systems while also exploring the possible relationships between different economic indicators and public health data in a large number of countries. Implementing this project in MongoDB also allowed me to practice creating queries that produce meaningful results. I really enjoyed implementing this project and I am glad that I got the opportunity to freely explore a data set that really peeked my interest.
