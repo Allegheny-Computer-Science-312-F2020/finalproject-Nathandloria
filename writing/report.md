@@ -4,7 +4,7 @@ Nathan Loria
 ***Date:***
 12/11/2020
 
-# Exploring Trends in Both Economic Growth & Public Health
+# Exploring Trends in Both Economic Growth & Public Health Data
 
 **Data**:
 ---
@@ -115,6 +115,9 @@ The code block below shows an example (Bahrain) of what the structure of each do
 ---
 **Is there a correlation between GDP per capita and infant mortality rate?**
 
+***Background***:
+I originally thought of this question because I was thinking about the different factors that could effect infant mortality rate. When I discovered the `GDP_per_capita` field, I became curious to see if in countries with a lower GDP per capita there was also higher rates of infant mortality.
+
 Query 1:
 ```
 db.Country.aggregate([{ $group: { _id:null, avg_gdp_per_capita: {$avg:"$GDP_per_capita"} } }])
@@ -155,7 +158,7 @@ Results:
 ```
 
 ***Conclusion***:
-To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact.
+To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact. Since this trend is observable, it leads to the conclusion that resources and aid to countries with lower GDP per capita numbers is very valuable. Proper access to sufficient healthcare is a large part of ensuring a baby lives upon birth and the countries that have the least access to such healthcare are typically those with a lower GDP per capita.
 
 ---
 **Is there a correlation between energy consumption and natural gas production in this data set?**
