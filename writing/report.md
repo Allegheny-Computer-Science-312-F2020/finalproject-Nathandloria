@@ -1,5 +1,11 @@
-***Nathan Loria - CS 312 Final Project***
----
+***Name:***
+Nathan Loria
+
+***Date:***
+12/11/2020
+
+# Exploring Trends in Both Economic Growth & Public Health
+
 **Data**:
 ---
 Source:
