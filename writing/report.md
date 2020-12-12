@@ -23,7 +23,7 @@ The research questions that I used to guide my analysis of the data and test my 
 ```
   1. Is there a correlation between GDP per capita and infant mortality rate?
   2. Is there a correlation between energy consumption and natural gas production in this data set?
-  3. Do countries with more railways have less highways?
+  3. Do countries with more extensive railways have less highways?
   4. Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?
   5. Do the countries with the highest GDP have less debt (proportionally) than those with the lowest?
 ```
@@ -116,6 +116,7 @@ The code block below shows an example (Bahrain) of what the structure of each do
 **Is there a correlation between GDP per capita and infant mortality rate?**
 
 ***Background***:
+
 I originally thought of this question because I was thinking about the different factors that could effect infant mortality rate. When I discovered the `GDP_per_capita` field, I became curious to see if in countries with a lower GDP per capita there was also higher rates of infant mortality.
 
 Query 1:
@@ -158,10 +159,17 @@ Results:
 ```
 
 ***Conclusion***:
+
 To reiterate, the purpose of this research question was to determine if there was an observable link between GDP per capita and infant mortality rate in the countries within the data set. Based on the queries that were run, a clear correlation between GDP per capita and infant mortality rate can be observed. In countries where the GDP per capita is highest, there seems to be the lowest rates of infant mortality. This means that, unfortunately, in countries that boast "subpar" GDP per capita numbers, there are higher rates of infant mortality. According to the results of each query, the average GDP per capita for all of the countries on the list was 10,552. On average, the countries that are above this threshold have an infant mortality rate of `8.57 deaths / 1000 live births`. On the contrary, the countries below this mark have an average rate of `49.57 deaths / 1000 live births`. That is a difference of 41 deaths per 1000 babies born which is an alarming and upsetting fact. Since this trend is observable, it leads to the conclusion that resources and aid to countries with lower GDP per capita numbers is very valuable. Proper access to sufficient healthcare is a large part of ensuring a baby lives upon birth and the countries that have the least access to such healthcare are typically those with a lower GDP per capita.
 
 ---
 **Is there a correlation between energy consumption and natural gas production in this data set?**
+
+***Background***:
+
+When I initially saw these two statistics in the CSV data file, I did not think about attempting to observe a trend between them. As I thought more about it, however, I was curious what the trends were for different countries in regards to consuming electricity and producing natural gas. I wanted to extract information out of the data that would show me any possible relationship between these two things. Once I had this data, however, I wanted to produce some sort of graphical representation of the results in order to allow for a more clear explanation of the trends. To do this, I created a python script called `question_2.py`. When run inside of a mongo container, this script creates an image of a graph that has all of the points from the data that the queries returned as well as a line of best fit to show the trend among outlier data that made the majority of points harder to read. Below is a code snipped with the main function that `question_2.py` uses to create this graph.
+
+![image](img/question_2.png)
 
 Query:
 ```
@@ -172,7 +180,7 @@ Description:
 - Provide me with the electricity consumption and natural gas production of a country where both values are not equal to ""
 
 Results:
-<details><summary>Click for results</summary>
+<details><summary><b>Click for results</b></summary>
 <p>
 ```
 { "Electricity_consumption" : 652200000, "Natural_gas_production" : 220000000 }
@@ -291,8 +299,18 @@ Plot:
 
 ![image](img/q_2.png)
 
+***Conclusion***:
+
+Upon analyzing the data from the queries and observing the graph produced by `question_2.py`, a clear positive correlation can be observed between natural gas production (cubic meters) and electricity consumption (kWh) in the countries within the data set. The scatter points in the graph appear hard to read due to outlier data that skews the scale of the graph, but the slope and angle of the line of best fit looks just like that of a direct correlation. As a general trend, when electricity consumption increases, so does natural gas. This trend may appear as commonsense but when I initially considered the possibilities, I thought it would be possible for there to be no correlation meaning that most countries imported the majority of their energy, aside from a few powerhouse countries in the middle east, Iceland, China, India, and the United States.   
+
 ---
-**Do countries with more railways have less highways?**
+**Do countries with more extensive railways have less highways?**
+
+***Background***:
+
+The reason that this question was asked is that railways and highways are often an important indicator of economic succes, as more extensive systems account for the easier and more efficient transportation of goods. If a common trend in the proportion of railways to highways in a country can be found, then you would have the ability to compare these numbers to the amount of land in a country, and a countries economic success, to observe if there is a correlation between those as well. Just as in the previous research question that was discussed, the results from the queries that were run for this question contained hundreds of documents. In order to view these trends more clearly and easily show the correlation coefficient (slope of line of best fit), a python script was used to develop a graph using PyMongo and matplotlib. The file `question_3.py` in the src directory handles this, and can be used to recreate this graph as the data changes. Below is the main function from `question_3.py` that handles the querying and creation of the following graph.
+
+![image](img/question_3.png)
 
 Query:
 ```
@@ -448,6 +466,10 @@ Results:
 Plot:
 
 ![image](img/q_3.png)
+
+***Conclusion***:
+
+Upon reviewing the results of the query, there does not seem to be any correlation between the extensiveness of a countries railway system and the extensiveness of their highway system. For the majority of countries, the ratio of length of railways (km) to length of highways (km) is very similar. This means that the one of the only factors that really effects the length of highway and railways systems in a country is the size of it's land mass.
 
 **Does a higher fertility rate correlate with a higher AIDS prevalence rate among adults? If so, how many countries are affected by this in the data set?**
 
